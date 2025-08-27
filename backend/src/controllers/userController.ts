@@ -16,7 +16,6 @@ export const updateRoles =
   (db: Pool) => async (req: Request, res: Response) => {
     const userId = parseInt(req.params.id);
     const roles: string[] = req.body.roles || [];
-
     try {
       await userService.updateUserRoles(db, userId, roles);
       res.json({ message: "Roles updated" });
