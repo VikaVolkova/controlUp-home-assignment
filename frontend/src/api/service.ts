@@ -7,7 +7,7 @@ export async function updateUserRoles(userId: number, roles: UserRole[]) {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer eyJpZCI6MSwicm9sZXMiOlsiQWRtaW4iXX0=",
+      Authorization: "Bearer eyJpZCI6MSwicm9sZXMiOlsiQWRtaW4iXX0=", // token for user with Admin role.
       // Authorization: "Bearer eyJpZCI6Miwicm9sZXMiOlsiVmlld2VyIl19", -- token for user with Viewer role. Save it here to demonstrate error
     },
     body: JSON.stringify({ roles }),

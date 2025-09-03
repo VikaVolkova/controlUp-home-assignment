@@ -1,6 +1,8 @@
 import { Pool } from "pg";
+import { UserRole } from "../models/role";
+import { User } from "../models/user";
 
-export const getAllUsers = async (db: Pool) => {
+export const getAllUsers = async (db: Pool): Promise<User[]> => {
   const result = await db.query(`
     SELECT u.id, u.name, u.email, u.time_created, u.time_updated,
       COALESCE(json_agg(r.name) FILTER (WHERE r.name IS NOT NULL), '[]') AS roles
@@ -16,7 +18,7 @@ export const getAllUsers = async (db: Pool) => {
 export const updateUserRoles = async (
   db: Pool,
   userId: number,
-  roles: string[]
+  roles: UserRole[]
 ) => {
   await db.query("DELETE FROM user_roles WHERE user_id = $1", [userId]);
 
